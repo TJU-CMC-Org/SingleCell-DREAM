@@ -95,7 +95,7 @@ Please visit the sub-directory named "NeuralNetworks/DuringChallenge_Subchalleng
 ### Location prediction
 After selecting the most informative genes, using Random, the modified version of LASSO and Deep Neural Nets, we predicted the 10 locations per cell using a modified version of DistMap, as described in our publication, add link TBA. The modified version of DistMap employs only the cells in the training set to calculate all DistMap parameters and predicts the cell locations in the both the training and test sets. 
 The modified version of DistMap can be found here
-`R_Common/myDistMap.R`
+`R_Common/distmap/R/myDistMap.R`
 
 
     # Predict Locations using the modified version of DistMap
