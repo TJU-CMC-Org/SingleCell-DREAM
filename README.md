@@ -130,10 +130,10 @@ top 10 predicted locations from the true location.
     # Comparison of different methods
     source("SubChallenge_1_3/R/Evaluate_Final_Predictions_SUBMIT.R")
 
-#### Post-challenge
+### Post-challenge
 After the challenge ended, we evaluated our performance using an outter cross-validation provided by the challenge organizers.  
 
-### Neural Network Approach
+#### Neural Network Approach
 The codes for this are included in the 'NeuralNetworks/PostChallenge' folder and utilize the same set of steps as described above.
 
 
