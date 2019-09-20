@@ -22,7 +22,7 @@ library(doMC)
 library(data.table)
 set.seed(1234)
 
-source("R_Common/myDistMap.R")
+source("R_Common/distmap/R/myDistMap.R")
 
 
 # Import raw and normalised data decompress the downloaded dataset and import to data.frame.
