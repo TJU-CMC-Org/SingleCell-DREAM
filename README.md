@@ -104,6 +104,7 @@ order to predict the top 10 locations of the 1297 cells.
 ### Sub-Challenge 2
 
 #### Instructions for running Neural Network codes used for variable selection
+Please visit the sub-directory named "NeuralNetworks/DuringChallenge_Subchallenge2" and then run the below 3 steps.
 
 #### Pre-process/generate a table that will be used for training:
 * Other: Depending on the paths on your system, you may have to change the paths to the input files for files: dge_raw.txt, dge_normalized.txt, binarized_bdtnp.csv, and geometry.txt (these are provided by the challenge organizers at https://www.synapse.org/#!Synapse:syn15665609/wiki/582909)
