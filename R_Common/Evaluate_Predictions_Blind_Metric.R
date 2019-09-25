@@ -17,7 +17,7 @@ library(ggfortify)
 # USER INPUT ####
 # ***************
 
-folder2save <- "Results_Common/Figures/"
+folder2save <- "Results_Common/"
 
 
 # *****************

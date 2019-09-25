@@ -106,7 +106,7 @@ colnames(insitu.matrix) = insitu.genes
 
 # The column naming of the geometry is not consistent with distMap expectation, xcoord, ycoord and zcoord must be renamed to x, y, z
 
-geometry = read.csv("Data/geometry.txt",sep = " ")
+geometry = read.csv("Data/geometry.txt.gz",sep = " ")
 
 ## Warning in read.table(file = file, header = header, sep = sep, quote =
 ## quote, : seek on a gzfile connection returned an internal error

@@ -9,9 +9,9 @@ rm(list = ls())
 # load(file = "Results_Common/cell_Locations_top10_MCC_DistMapOnTest_10foldCV_UsingProvidedBinaryData.RData")
 # path2save <- "Results_Common/SubmissionFiles_CV_DistMapOnTestCells_UsingProvidedBinaryData/"
 
-# @ TrainTest mode of DistMap ####
-load(file = "Results_Common/cell_Locations_top10_MCC_DistMapTrainTest_10foldCV.RData")
-path2save <- "Results_Common/SubmissionFiles_CV_DistMapTrainTest/"
+# # @ TrainTest mode of DistMap ####
+# load(file = "Results_Common/cell_Locations_top10_MCC_DistMapTrainTest_10foldCV.RData")
+# path2save <- "Results_Common/SubmissionFiles_CV_DistMapTrainTest/"
 
 
 # *****************
@@ -62,12 +62,13 @@ topXbins.All <- topXbins.All[numFeatures %in% c(20, 40, 60)]
 
 # Important features, files information
 # - Lasso - 
-files_cv_results_LASSO <- list.files(path = "SubChallenge_1_3/Results_UniquelyMapped_cells_inSituRNAseq/", 
-                                     pattern = "FeaturesInformation_CV", 
-                                     full.names = TRUE)
+files_cv_results_LASSO <- 
+    list.files(path = "Modified_LASSO_workflow/Results_UniquelyMapped_cells_inSituRNAseq", 
+               pattern = "FeaturesInformation_CV", 
+               full.names = TRUE)
 # - Neural Nets - 
 files_cv_results_NeuralNets <- 
-    list.files(path = "SubChallenge_2/Results/TopGenes-OnlyInsitus",
+    list.files(path = "NeuralNetworks/Results_UniquelyMapped_cells_inSituRNAseq",
                recursive = TRUE, full.names = TRUE)
 
 # - Random - 
@@ -77,7 +78,7 @@ files_cv_results_Random <- list.files(path = "Results_Common/Baseline_Method",
 
 
 # Insitu genes information
-insitu <- fread("Data/bdtnp.txt")
+insitu <- fread("Data/bdtnp.txt.gz")
 
 # Subset on test folds
 # Load Test sets
