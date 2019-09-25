@@ -29,6 +29,17 @@ Notes
     # Installing required dependencies
     source("Modified_LASSO_workflow/R/Dependencies.R") 
     
+    # Setting Things up
+    # - Create folders tree
+    # - Download data
+    source("R_Common/SettingThingsUp.R")
+    
+    # Create NestedCV folds
+    # The created 10 folds are generated randomly and are used only for illustration purposes.
+    # The results in our paper are based on the 10 cross validation folds provided by the challenge's organiners and are available here.TBA
+    source("R_Common/Create_NestedCV_folds.R")
+    
+    
     # - Python TODO
     
 
@@ -62,7 +73,7 @@ Our code and respective documentation can be found in
 and is provided as an extension of glmnet package.
 
     # Reproduce our gene selection using the modified LASSO workflow using 
-    # the provided, by the challenge organizers, nested cross validation folds.
+    # the nested cross validation folds.
     # - To select only from the inSitu genes set: useOnlyInSitu <- TRUE. 
     # - To select across all genes set: useOnlyInSitu <- FALSE. 
     # Run feature selection process
@@ -91,7 +102,6 @@ Please visit the sub-directory named "NeuralNetworks/DuringChallenge_Subchalleng
 * Run: bash Step3_GenerateRankedLists.sh
 
 
-
 ### Location prediction
 After selecting the most informative genes, using Random, the modified version of LASSO and Deep Neural Nets, we predicted the 10 locations per cell using a modified version of DistMap, as described in our publication, add link TBA. The modified version of DistMap employs only the cells in the training set to calculate all DistMap parameters and predicts the cell locations in the both the training and test sets. 
 The modified version of DistMap can be found here
@@ -114,9 +124,9 @@ For details see publication link - TBA
 
     # Score predictions - organizers score functions
     # Open R script "R_Common/GenerateSubmissionFiles.R"
-    # - Uncomment lines 13 and 14 to generate the submission files needed using the location predictions from the modified DistMap.
-    source(file = "R_Common/GenerateSubmissionFiles.R")
     # - Uncomment lines 9 and 10 to generate the submission files needed using the Provided Binarized table.
+    source(file = "R_Common/GenerateSubmissionFiles.R")
+    # - Uncomment lines 13 and 14 to generate the submission files needed using the location predictions from the modified DistMap.
     source(file = "R_Common/GenerateSubmissionFiles.R")
     # Finally generate scores and figures for both approaches by running.
     source(file = "R_Common/Evaluate_Predictions_Organizers_Scores.R")
