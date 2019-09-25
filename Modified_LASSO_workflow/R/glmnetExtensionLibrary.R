@@ -145,7 +145,7 @@ my.cv.glmnet <- function(x, y, lambda, nfolds = 10, numFeatures = c(20,40,60), r
     lasso.coefs.cv.dt.m[, numCoordsPerLambdaPerGenePerFold := sum(Coefficiens != 0), 
                         by = c("lambdaid", "Genes", "RepFold")]
     # Filtering
-    lasso.coefs.cv.dt.m <- lasso.coefs.cv.dt.m[numCoordsPerLambdaPerGenePerFold == 3]
+    lasso.coefs.cv.dt.m <- lasso.coefs.cv.dt.m[numCoordsPerLambdaPerGenePerFold != 0]
     
     # Number of Features Per Lambda Per RepFold Per Coordinate
     # This corresponds also to the
@@ -154,6 +154,22 @@ my.cv.glmnet <- function(x, y, lambda, nfolds = 10, numFeatures = c(20,40,60), r
     lasso.coefs.cv.dt.m[, numFeaturesPerLambdaPerFoldPerCoord := sum(Coefficiens != 0), 
                         by = c("lambdaid", "RepFold", "Coord")]
     
+    # Check if the desired number of features in results
+    if(!any(numFeatures %in% unique(lasso.coefs.cv.dt.m$numFeaturesPerLambdaPerFoldPerCoord))){
+        cat("Stopping..\n-Information-\n")
+        cat("Desired number of features:", numFeatures, "\n")
+        cat("Resulting number of features:\n", 
+            sort(unique(lasso.coefs.cv.dt.m$numFeaturesPerLambdaPerFoldPerCoord)), "\n")
+        stop("The desired number of features not in results\nSuggestions: pick a different lambda range")
+    }
+    if(!all(numFeatures %in% unique(lasso.coefs.cv.dt.m$numFeaturesPerLambdaPerFoldPerCoord))){
+        cat("-Information-\n")
+        cat("Desired number of features:", numFeatures, "\n")
+        cat("Resulting number of features:\n", 
+            unique(lasso.coefs.cv.dt.m$numFeaturesPerLambdaPerFoldPerCoord), "\n")
+        warning("Some of the desired number of features not in results\nSuggestions: pick a different lambda range\nThe computations will continue.")
+    }
+
     # Number of folds each Gene is important Per lambda Per Coord
     lasso.coefs.cv.dt.m[, numFoldsPerLambdaPerGenePerCoord := sum(Coefficiens != 0), 
                         by = c("lambdaid", "Genes", "Coord")]
