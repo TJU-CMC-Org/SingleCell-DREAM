@@ -5,7 +5,7 @@
 # Default folder locations that are used to save and read files are generated.
 # ************************
 
-cat("Creating folders tree...")
+cat("Creating folders tree...\n")
 
 # Data folder #
 cat("- Data folders\n")
@@ -19,7 +19,7 @@ dir.create(path = "Modified_LASSO_workflow/Results_UniquelyMapped_cells_inSituRN
 dir.create(path = "Modified_LASSO_workflow/Results_UniquellyMapped_cells_allRNASeq")
 
 # Results folders Common #
-cat("- Common Results folders\n")
+cat("- Common Results folders\n\n")
 dir.create(path = "Results_Common")
 dir.create(path = "Results_Common/Baseline_Method")
 dir.create(path = "Results_Common/SubmissionFiles_CV_DistMapTrainTest")
