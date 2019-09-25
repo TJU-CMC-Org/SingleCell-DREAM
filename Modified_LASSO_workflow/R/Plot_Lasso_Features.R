@@ -6,13 +6,13 @@ rm(list = ls())
 # ***************
 
 # File with CV results to load
-fileCV <- "SubChallenge_1_3/Results_UniquelyMapped_cells_inSituRNAseq/FeaturesInformation_CV_1_Data_UniquellyMappedCells_LASSO_Reps20_Folds5.RData"
+fileCV <- "Modified_LASSO_workflow/Results_UniquelyMapped_cells_inSituRNAseq/FeaturesInformation_CV_1_Data_UniquellyMappedCells_LASSO_Reps20_Folds5.RData"
 
 # Num of Features 
-numFeatures <- c(5, 10, 20, 30, 40, 50)
+numFeatures <- c(20, 40, 60)
 
 # Folder to save plots
-folder2save <- "SubChallenge_1_3/Results_UniquelyMapped_cells_inSituRNAseq/"
+folder2save <- "Modified_LASSO_workflow/Results_UniquelyMapped_cells_inSituRNAseq/"
 
 # Folds
 nfolds <- 5
@@ -72,7 +72,7 @@ plotLambdaSelection <-
     ylab(label = "Mean Euclidean Distance") +
     ggtitle("Error Evolution") + 
     theme_bw() + theme(legend.position = "bottom")
-plotLambdaSelection
+print(plotLambdaSelection)
 
 ggsave(filename = paste0(folder2save, "/ErrorEvolution.jpg"), 
        plot = plotLambdaSelection, width = 4.2, height = 4)

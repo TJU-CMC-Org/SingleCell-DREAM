@@ -1,8 +1,8 @@
 rm(list = ls())
 # Change the paths of the input files to rerun the script ###
-normalized.data <- read.csv("Data/dge_normalized.txt", sep = "\t") # 
+normalized.data <- read.csv("Data/dge_normalized.txt.gz", sep = "\t") # 
 # Change the paths of the input files to rerun the script ###
-geometry <- read.csv("Data/geometry.txt",sep = " ")
+geometry <- read.csv("Data/geometry.txt.gz",sep = " ")
 
 # Load datasets
 load("Results_Common/my_mapCells_run.RData")
