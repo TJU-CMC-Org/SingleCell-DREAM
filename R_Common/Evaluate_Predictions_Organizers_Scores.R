@@ -125,7 +125,7 @@ myplots <- foreach(sub_i = unique(allScores$Subchallenge)) %do% {
         ggtitle(paste("Subchallenge =", sub_i)) + 
         theme_bw()
 }
-autoplot(object = myplots)
+print(autoplot(object = myplots))
 
 ggsave(filename = paste0(folder2save, "MethodsComparison_NestedCV_Distribution_OrganizersScores.jpg"), 
        plot = autoplot(object = myplots), width = 8, height = 10)
@@ -142,29 +142,9 @@ myplotsMean <- foreach(sub_i = unique(allScores$Subchallenge)) %do% {
         theme_bw() #+ theme(legend.position = "bottom")
 }
 
-autoplot(object = myplotsMean)
+print(autoplot(object = myplotsMean))
 ggsave(filename = paste0(folder2save, "MethodsComparison_NestedCV_Mean_OrganizersScores.jpg"), 
        plot = autoplot(object = myplotsMean), width = 7, height = 10)
 
-
-
-
 fwrite(x = allScores, file = paste0(folder2save, "OrganizersScoreFunctionsResults.csv"), 
        quote = FALSE)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
