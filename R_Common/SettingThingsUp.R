@@ -33,6 +33,7 @@ dir.create(path = "Results_Common/SubmissionFiles_CV_DistMapOnTestCells_UsingPro
 
 # Download files #
 cat("Download data files...\n")
+cat("Paths were adopted from \n\"https://github.com/dream-sctc/Scoring/blob/master/dream_scoring_clean.R\"\n")
 download.file("http://bimsbstatic.mdc-berlin.de/rajewsky/DVEX/dge_raw.txt.gz", 
               destfile = "Data/dge_raw.txt.gz")
 download.file("http://bimsbstatic.mdc-berlin.de/rajewsky/DVEX/dge_normalized.txt.gz",
