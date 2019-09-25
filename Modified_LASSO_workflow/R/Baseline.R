@@ -23,7 +23,7 @@ library(data.table)
 # Important: quote is set to empty string, this way we can prevent the mis-interpretation of a gene name, that contains an apostrophe
 
 # We convert the data.frame to matrix: each column represents a cell and each row corresponds to a gene.
-raw.data = read.table("Data/dge_raw.txt", sep = "\t", row.names = NULL,
+raw.data = read.table("Data/dge_raw.txt.gz", sep = "\t", row.names = NULL,
                       stringsAsFactors = F, quote = "")
 raw.data.genes = raw.data$V1
 raw.data$V1 = NULL
@@ -38,7 +38,7 @@ raw.data = as.matrix(raw.data)
 rownames(raw.data) = raw.data.genes
 
 # Repeat for the normalised data
-normalized.data = read.table("Data/dge_normalized.txt", sep = "\t",
+normalized.data = read.table("Data/dge_normalized.txt.gz", sep = "\t",
                              row.names = NULL, stringsAsFactors = F, quote = "")
 normalized.data.genes = normalized.data$row.names
 normalized.data$row.names = NULL
@@ -58,7 +58,7 @@ colnames(raw.data) <- colnames(normalized.data)
 stopifnot(all(normalized.data.genes == raw.data.genes))
 
 # Import in situ datasets
-insitu.matrix = read.table("Data/binarized_bdtnp.csv", sep = ",",header = T)
+insitu.matrix = read.table("Data/binarized_bdtnp.csv.gz", sep = ",",header = T)
 
 ## Warning in read.table(gzfile("binarized_bdtnp.csv.gz", "rt"), sep = ",", :
 ## seek on a gzfile connection returned an internal error
@@ -110,19 +110,5 @@ for(i in 1:nrow(featuresInfo)){
                 quote = FALSE, row.names = FALSE, col.names = FALSE)
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
