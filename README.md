@@ -14,31 +14,28 @@ perform the analysis on the Single Cell Transcriptomics challenge, see
 <https://www.synapse.org/#!Synapse:syn15665609/wiki/>. Please follow the
 steps below to rerun our analysis.
 
-Notes
-
--   Parallel processing. There are several code chunks where we run
-    computations in parallel using all available cores.
 
 ### Setting things up
 
     # Software dependencies
     # - R version 3.6.0 (2019-04-26) -- "Planting of a Tree"
     # - R Packages. Install required packages for Modified LASSO workflow
+    # Start R
     # Set working directory to src folder
-    setwd("PATH_TO_SRC_FOLDER/")
+    setwd("PATH_TO_SingleCell-DREAM_FOLDER/")
     # Installing required dependencies
     source("Modified_LASSO_workflow/R/Dependencies.R") 
     
     # Setting Things up
     # - Create folders tree
-    # - Download data
+    # - Download data, paths were adopted from
+    "https://github.com/dream-sctc".
     source("R_Common/SettingThingsUp.R")
     
     # Create NestedCV folds
     # The created 10 folds are generated randomly and are used only for illustration purposes.
     # The results in our paper are based on the 10 cross validation folds provided by the challenge's organiners and are available here.TBA
     source("R_Common/Create_NestedCV_folds.R")
-    
     
     # - Python TODO
     
@@ -67,7 +64,7 @@ In order to generate the cell's 3d positions, which we used for labels, we run D
 
 
 ##### Feature selection step
-We modified LASSO workflow as described in our publication, add link TBA.
+We modified LASSO workflow as described in our publication, TBA.
 Our code and respective documentation can be found in 
 `Modified_LASSO_workflow/R/glmnetExtensionLibrary.R`
 and is provided as an extension of glmnet package.
@@ -88,7 +85,7 @@ and is provided as an extension of glmnet package.
 Please visit the sub-directory named "NeuralNetworks/DuringChallenge_Subchallenge2" and then run the below 3 steps.
 
 #### Pre-process/generate a table that will be used for training:
-* Other: Depending on the paths on your system, you may have to change the paths to the input files for files: dge_raw.txt, dge_normalized.txt, binarized_bdtnp.csv, and geometry.txt (these are provided by the challenge organizers at https://www.synapse.org/#!Synapse:syn15665609/wiki/582909)
+* Other: Depending on the paths on your system, you may have to change the paths to the input files for files: dge_raw.txt, dge_normalized.txt, binarized_bdtnp.csv, and geometry.txt (these are provided by the challenge organizers at https://www.synapse.org/#!Synapse:syn15665609/wiki/582909). 
 
 * Run: Rscript Step1_GenTrainingDataMatrix.R
 
@@ -116,8 +113,9 @@ The modified version of DistMap can be found here
 
 
 ### Score predictions 
-We score our prediction using our in-house blind metric and the challenge's organizers score functions. 
-For details see publication link - TBA
+We score our prediction using our in-house blind metric and the challenge's organizers score functions, which are available online at `https://github.com/dream-sctc`.
+
+For details see publication - TBA
 
     # Score predictions - blind metric
     source(file = "R_Common/Evaluate_Predictions_Blind_Metric.R")
@@ -130,8 +128,3 @@ For details see publication link - TBA
     source(file = "R_Common/GenerateSubmissionFiles.R")
     # Finally generate scores and figures for both approaches by running.
     source(file = "R_Common/Evaluate_Predictions_Organizers_Scores.R")
-    
-    
-    
-
-
