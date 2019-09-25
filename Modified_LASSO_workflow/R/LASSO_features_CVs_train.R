@@ -7,20 +7,23 @@ rm(list = ls())
 set.seed(1234)
 require(glmnet)
 require(data.table)
-source("SubChallenge_1_3/R/glmnetExtensionLibrary.R")
+source("Modified_LASSO_workflow/R/glmnetExtensionLibrary.R")
 
 # ***************
 # USER input ####
 # ***************
+numFeaturesIn <- c(20, 40, 60)
+repCV <- 20
+nfoldsCV <- 5
 
 # Data to use
 # NOTE: Change the paths of the input files to rerun the script
-singleCellRNAseq <- fread(input = "Data/dge_normalized.txt", sep = "\t")
+singleCellRNAseq <- fread(input = "Data/dge_normalized.txt.gz", sep = "\t")
 colnames(singleCellRNAseq)[1] <- "Genes"
 
 # insitu data
 # NOTE: Change the paths of the input files to rerun the script
-insitu.matrix = read.csv("Data/binarized_bdtnp.csv",check.names = FALSE)
+insitu.matrix = read.csv("Data/binarized_bdtnp.csv.gz",check.names = FALSE)
 
 # Coordinates to predict 
 load(file = "Results_Common/geometry.RNAseq.RData")
@@ -28,7 +31,7 @@ load(file = "Results_Common/geometry.RNAseq.RData")
 rm(geometry.RNAseq.all)
 
 # Use inSitu genes only
-useOnlyInSitu <- FALSE
+useOnlyInSitu <- TRUE
 
 # Read provided training index - 10 fold CV
 folds_train <- fread(input = "Data/CV_folds/folds_train.csv")
@@ -39,8 +42,8 @@ cell_ids <- fread(input = "Data/CV_folds/cell_ids.csv")
 grid = 10^seq(from = 1.3, to = -1, length.out = 300)
 
 # Path to folder to save results
-# path2saveResults <- "SubChallenge_1_3/Results_UniquelyMapped_cells_inSituRNAseq"
-path2saveResults <- "SubChallenge_1_3/Results_UniquellyMapped_cells_allRNASeq"
+path2saveResults <- "Modified_LASSO_workflow/Results_UniquelyMapped_cells_inSituRNAseq"
+# path2saveResults <- "Modified_LASSO_workflow/Results_UniquellyMapped_cells_allRNASeq"
 
 # *****************
 # CALCULATIONS ####
@@ -104,8 +107,8 @@ for(fold_i in 1:nrow(folds_train)){
     
     # Identify most stable / important inSitu genes
     cv.lasso.mse <- my.cv.glmnet(x = singleCellRNAseq.train, y = geometry.RNAseq.train,
-                                 numFeatures = c(20, 40, 60), lambda = grid, nfolds = 5, 
-                                 reps = 20)
+                                 numFeatures = numFeaturesIn, lambda = grid, nfolds = nfoldsCV, 
+                                 reps = repCV, ncores = detectCores()/2)
     
     # Save results
     filename_i <- paste0(path2saveResults, "/FeaturesInformation_CV_",
