@@ -14,31 +14,36 @@ perform the analysis on the Single Cell Transcriptomics challenge, see
 <https://www.synapse.org/#!Synapse:syn15665609/wiki/>. Please follow the
 steps below to rerun our analysis.
 
+### Software Dependencies
 
-### Setting things up
+* Unix System
+* Python 3.5+, packages PyTorch, numpy, pandas, pickle, csv, sys, random.
+* R version 3.6.0 (2019-04-26) -- "Planting of a Tree"
 
-    # Software dependencies
-    # - R version 3.6.0 (2019-04-26) -- "Planting of a Tree"
-    # - R Packages. Install required packages for Modified LASSO workflow
+###### R packages
+
+
+    # Install required packages for Modified LASSO workflow 
     # Start R
-    # Set working directory to src folder
+    # Set working directory to SingleCell-DREAM_FOLDER
     setwd("PATH_TO_SingleCell-DREAM_FOLDER/")
     # Installing required dependencies
     source("Modified_LASSO_workflow/R/Dependencies.R") 
-    
+
+
+### Setting things up
+
     # Setting Things up
     # - Create folders tree
-    # - Download data, paths were adopted from
-    "https://github.com/dream-sctc".
+    # - Download data from: 
+    # https://shiny.mdc-berlin.de/DVEX/
     source("R_Common/SettingThingsUp.R")
     
     # Create NestedCV folds
     # The created 10 folds are generated randomly and are used only for illustration purposes.
     # The results in our paper are based on the 10 cross validation folds provided by the challenge's organiners and are available here.TBA
     source("R_Common/Create_NestedCV_folds.R")
-    
-    # - Python TODO
-    
+
 
 ### Feature Selection 
 We employed three methods to perform the feature selection step, namely Random, a modified LASSO workflow and Deep Neural Nets.
@@ -90,7 +95,6 @@ Please visit the sub-directory named "NeuralNetworks/DuringChallenge_Subchalleng
 * Run: Rscript Step1_GenTrainingDataMatrix.R
 
 #### Create the models and perform inference:
-* Pre-reqs include: Python 3.5+, packages PyTorch, numpy, pandas, pickle, csv, sys, random
 * Other: at top of EvalData.py file, you will see variables that start with 'fn_'.  Change the paths accordingly for your system.
 * Run: python EvalData.py
 
