@@ -1,11 +1,9 @@
-# Download necessary files 
-
 # ************************
 # Create folders tree ####
 # Default folder locations that are used to save and read files are generated.
 # ************************
-
-cat("Creating folders tree...\n")
+library(R.utils)
+cat("\nCreating folders tree...\n")
 
 # Data folder #
 cat("- Data folders\n")
@@ -23,7 +21,6 @@ cat("- NeuralNetworks Results folders...\n")
 dir.create(path = "NeuralNetworks/Results_UniquelyMapped_cells_inSituRNAseq")
 dir.create(path = "NeuralNetworks/Results_UniquellyMapped_cells_allRNASeq")
 
-
 # Results folders Common #
 cat("- Common Results folders\n\n")
 dir.create(path = "Results_Common")
@@ -32,7 +29,7 @@ dir.create(path = "Results_Common/SubmissionFiles_CV_DistMapTrainTest")
 dir.create(path = "Results_Common/SubmissionFiles_CV_DistMapOnTestCells_UsingProvidedBinaryData")
 
 # Download files #
-cat("Download data files...\n")
+cat("Download data files from: \nhttps://shiny.mdc-berlin.de/DVEX/\n")
 download.file("http://bimsbstatic.mdc-berlin.de/rajewsky/DVEX/dge_raw.txt.gz", 
               destfile = "Data/dge_raw.txt.gz")
 download.file("http://bimsbstatic.mdc-berlin.de/rajewsky/DVEX/dge_normalized.txt.gz",
@@ -44,3 +41,9 @@ download.file("http://bimsbstatic.mdc-berlin.de/rajewsky/DVEX/bdtnp.txt.gz",
 download.file("http://bimsbstatic.mdc-berlin.de/rajewsky/DVEX/geometry.txt.gz",
               destfile = "Data/geometry.txt.gz")
 
+# Unzip files #
+cat("Unzip data files\n")
+files2unzip <- list.files(path = "Data/", pattern = ".gz", full.names = TRUE)
+sapply(X = files2unzip, FUN = gunzip, remove = FALSE)
+
+cat("\nAll done!\n")
