@@ -1,13 +1,13 @@
 rm(list = ls())
 library(DistMap)
-raw.data = read.csv("dge_raw.txt",sep = "\t",header = F)
+raw.data = read.csv("../../Data/dge_raw.txt",sep = "\t",header = F)
 rownames(raw.data) = raw.data$V1
 raw.data$V1 = NULL
 
-normalized.data = read.csv("dge_normalized.txt", sep = "\t")
-insitu.matrix = read.csv("bdt_stuff/binarized_bdtnp.csv",check.names=F)
+normalized.data = read.csv("../../Data/dge_normalized.txt", sep = "\t")
+insitu.matrix = read.csv("../../Data/binarized_bdtnp.csv",check.names=F)
 
-geometry = read.csv("bdt_stuff/geometry.txt",sep = " ")
+geometry = read.csv("../../Data/geometry.txt",sep = " ")
 dm = new("DistMap", raw.data=as.matrix(raw.data),
          data = as.matrix(normalized.data),
          insitu.matrix = as.matrix(insitu.matrix),
