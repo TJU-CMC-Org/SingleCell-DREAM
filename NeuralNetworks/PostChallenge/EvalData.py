@@ -15,7 +15,7 @@ fn_trainingdata = "trainingTable.txt"; # generated using script Step1_GenTrainin
 fn_predictme = "../../Data/dge_normalized.txt" # this file has been supplied to us
 fn_geometry = "../../Data/geometry.tsv" # same as the supplied geometry.txt, but as a tab-separated table (instead of space separated)
 fn_insitugenes = "../DuringChallenge_Subchallenge2/bdtnp.genenames.n84.txt" # an 84-line file with the names of the 84 insitu genes
-fn_10cv = "10cv.txt" # list of 10cv's given by challenge organizers
+fn_10cv = "10cv.txt" # representative example of 10cv's given by challenge organizers
 
 def main():
    random.seed (314159); # set pi seed
