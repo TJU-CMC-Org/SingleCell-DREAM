@@ -98,7 +98,7 @@ Please visit the sub-directory named "NeuralNetworks/DuringChallenge_Subchalleng
 #### Combine variable importance scores across all 200 models:
 * Run: bash Step3_GenerateRankedLists.sh
 
-#### Run the PostChallenge 10CV
+#### Run the PostChallenge 10CV:
 * Go to directory: NeuralNetworks/PostChallenge/
 * Run: python EvalData.py
 * Run: bash Step3_GenerateRankedLists.sh
