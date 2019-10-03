@@ -16,10 +16,7 @@ cat("- Modified LASSO workflow Results folders...\n")
 dir.create(path = "Modified_LASSO_workflow/Results_UniquelyMapped_cells_inSituRNAseq")
 dir.create(path = "Modified_LASSO_workflow/Results_UniquellyMapped_cells_allRNASeq")
 
-# Results folders NeuralNetworks #
-cat("- NeuralNetworks Results folders...\n")
-dir.create(path = "NeuralNetworks/Results_UniquelyMapped_cells_inSituRNAseq")
-dir.create(path = "NeuralNetworks/Results_UniquellyMapped_cells_allRNASeq")
+# Results for NN will stay in the respective NN folders
 
 # Results folders Common #
 cat("- Common Results folders\n\n")

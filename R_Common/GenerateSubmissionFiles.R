@@ -67,9 +67,10 @@ files_cv_results_LASSO <-
                pattern = "FeaturesInformation_CV", 
                full.names = TRUE)
 # - Neural Nets - 
+
 files_cv_results_NeuralNets <- 
-    list.files(path = "NeuralNetworks/Results_UniquelyMapped_cells_inSituRNAseq",
-               recursive = TRUE, full.names = TRUE)
+    list.files(path = "NeuralNetworks/PostChallenge/", 
+               full.names = TRUE, pattern = "Results.NeuralNetworks.PostChallenge10CV.*FeatureSelection.InsituGenes.txt", recursive = TRUE)
 
 # - Random - 
 # 20, 40, 60 genes
@@ -108,16 +109,31 @@ for(tmpName_i in unique(topXbins.All2submit$tmpName)){
         
         rm(cv.lasso.mse)
     }else if(grepl(pattern = "NeuralNets", x = unique(topXbins.All_i$type))){
-        
-        # Read features using NeuralNets method
-        importantGenes <- fread(files_cv_results_NeuralNets[
-            grepl(pattern = paste0(strsplit(x = tmpName_i, split = ".", fixed = TRUE)[[1]][3], 
-                                   "_WithCut_",
-                                   (as.numeric(strsplit(x = tmpName_i, split = ".", 
-                                                        fixed = TRUE)[[1]][5]) - 1), 
-                                   ".txt"), 
-                  x = files_cv_results_NeuralNets)], 
-            header = FALSE)$V1
+
+	 	  subchallenge = "error";
+	     if (featuresInfo_i$numFeatures == 20) {
+		     subchallenge = "Subchallenge3";
+		  } else if (featuresInfo_i$numFeatures == 40) {
+		     subchallenge = "Subchallenge2";
+		  } else if (featuresInfo_i$numFeatures == 60) {
+		     subchallenge = "Subchallenge1";
+		  }
+
+#        # Read features using NeuralNets method
+#        importantGenes <- fread(files_cv_results_NeuralNets[
+#            grepl(pattern = paste0("Slice_",(featuresInfo_i$CV - 1), ".", subchallenge, ".FeatureSelection.InsituGenes.txt"), 
+#                  x = files_cv_results_NeuralNets)], 
+#            header = FALSE)$V1
+#        
+#        # Read features using NeuralNets method
+#        importantGenes <- fread(files_cv_results_NeuralNets[
+#            grepl(pattern = paste0(strsplit(x = tmpName_i, split = ".", fixed = TRUE)[[1]][3], 
+#                                   "_WithCut_",
+#                                   (as.numeric(strsplit(x = tmpName_i, split = ".", 
+#                                                        fixed = TRUE)[[1]][5]) - 1), 
+#                                   ".txt"), 
+#                  x = files_cv_results_NeuralNets)], 
+#            header = FALSE)$V1
         
         
     }else if(grepl(pattern = "Random", x = unique(topXbins.All_i$type))){

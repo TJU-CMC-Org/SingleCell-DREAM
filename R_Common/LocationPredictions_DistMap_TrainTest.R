@@ -134,8 +134,8 @@ files_cv_results_LASSO <- list.files(path = "Modified_LASSO_workflow/Results_Uni
 # - Neural Networks -
 # 20, 40, 60 genes
 files_cv_results_NeuralNets <- 
-    list.files(path = "NeuralNetworks/Results_UniquelyMapped_cells_inSituRNAseq", 
-               full.names = TRUE, pattern = ".txt", recursive = TRUE)
+    list.files(path = "NeuralNetworks/PostChallenge/", 
+               full.names = TRUE, pattern = "Results.NeuralNetworks.PostChallenge10CV.*FeatureSelection.InsituGenes.txt", recursive = TRUE)
 
 # - Random - 
 # 20, 40, 60 genes
@@ -179,9 +179,19 @@ distMaps <- foreach(i = 1:nrow(featuresInfo)) %dopar% {
            geometry.RNAseq.train, geometry.RNAseq.test)
         
     }else if(featuresInfo_i$Method == "NeuralNets"){
+
+	 	  subchallenge = "error";
+	     if (featuresInfo_i$numFeatures == 20) {
+		     subchallenge = "Subchallenge3";
+		  } else if (featuresInfo_i$numFeatures == 40) {
+		     subchallenge = "Subchallenge2";
+		  } else if (featuresInfo_i$numFeatures == 60) {
+		     subchallenge = "Subchallenge1";
+		  }
+
         # Read features using NeuralNets method
         importantGenes <- fread(files_cv_results_NeuralNets[
-            grepl(pattern = paste0(featuresInfo_i$numFeatures, "_WithCut_",(featuresInfo_i$CV - 1), ".txt"), 
+            grepl(pattern = paste0("Slice_",(featuresInfo_i$CV - 1), ".", subchallenge, ".FeatureSelection.InsituGenes.txt"), 
                   x = files_cv_results_NeuralNets)], 
             header = FALSE)$V1
         
