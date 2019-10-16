@@ -12,9 +12,9 @@ dir.create(path = "Data")
 dir.create(path = "Data/CV_folds")
 
 # Results folders LASSO #
-cat("- Modified LASSO workflow Results folders...\n")
-dir.create(path = "Modified_LASSO_workflow/Results_UniquelyMapped_cells_inSituRNAseq")
-dir.create(path = "Modified_LASSO_workflow/Results_UniquellyMapped_cells_allRNASeq")
+cat("- LASSO.topX workflow Results folders...\n")
+dir.create(path = "LASSO_topX_workflow/Results_UniquelyMapped_cells_inSituRNAseq")
+dir.create(path = "LASSO_topX_workflow/Results_UniquellyMapped_cells_allRNASeq")
 
 # Results for NN will stay in the respective NN folders
 
