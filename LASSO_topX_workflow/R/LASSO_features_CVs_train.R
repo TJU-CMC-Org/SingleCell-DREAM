@@ -7,7 +7,7 @@ rm(list = ls())
 set.seed(1234)
 require(glmnet)
 require(data.table)
-source("Modified_LASSO_workflow/R/glmnetExtensionLibrary.R")
+source("LASSO_topX_workflow/R/glmnetExtensionLibrary.R")
 
 # ***************
 # USER input ####
@@ -106,7 +106,7 @@ for(fold_i in 1:nrow(folds_train)){
     geometry.RNAseq.test <- as.matrix(geometry.RNAseq.test[, -4])
     
     # Identify most stable / important inSitu genes
-    cv.lasso.mse <- my.cv.glmnet(x = singleCellRNAseq.train, y = geometry.RNAseq.train,
+    cv.lasso.mse <- LASSO.topX(x = singleCellRNAseq.train, y = geometry.RNAseq.train,
                                  numFeatures = numFeaturesIn, lambda = grid, nfolds = nfoldsCV, 
                                  reps = repCV, ncores = detectCores()/2)
     

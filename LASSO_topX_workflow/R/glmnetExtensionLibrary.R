@@ -5,12 +5,12 @@ library(ggplot2)
 library(ggfortify)
 
 ########################################
-# my.cv.glmnet function Documentation ##
+# LASSO.topX function Documentation ##
 ########################################
-# my.cv.glmnet() performs a repeated cross validation scheme in order to identify a number of desired important features. 
+# LASSO.topX() performs a repeated cross validation scheme in order to identify a number of desired important features. 
 # The function builds (nfols * reps * lambda) LASSO models.
 
-# For each model, my.cv.glmnet() extracts the following information
+# For each model, LASSO.topX() extracts the following information
 # - Its performance. The loss function that is used to calculate the performance it employs the Euclidean of the predicted xyz location to the real location.  
 # - The number of features which were used.
 # - Their corrensponding coefficients
@@ -21,7 +21,7 @@ library(ggfortify)
 # - Stability: the number of times a feature was selected as important  
 # - Mean Coefficient: the mean value of the coefficients that a feature was assigned.
 
-# Finally my.cv.glmnet() function utilizes the rankSum statistic to combine these two metrics. In cases where there are more than desired number of features in the final list the function returns the genes with the higher rankSum. 
+# Finally LASSO.topX() function utilizes the rankSum statistic to combine these two metrics. In cases where there are more than desired number of features in the final list the function returns the genes with the higher rankSum. 
 
 # - Arguments -
 # x : matrix, rows correspond to cells and columns to genes.
@@ -31,7 +31,7 @@ library(ggfortify)
 # numFeatures : integer, vector of integers, corresponding to the number of features we are interested in identifying. 
 # reps : integer, corresponding to the number of times to repeat the cross validation procedure.
 ########################################
-my.cv.glmnet <- function(x, y, lambda, nfolds = 10, numFeatures = c(20,40,60), reps, ncores = 32){
+LASSO.topX <- function(x, y, lambda, nfolds = 10, numFeatures = c(20,40,60), reps, ncores = 32){
     
     # Euclidean Distance Matrix
     euclidean_distance <- function(myPred_i, test_i){
