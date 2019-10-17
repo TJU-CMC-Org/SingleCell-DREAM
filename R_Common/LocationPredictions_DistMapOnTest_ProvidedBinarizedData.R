@@ -122,10 +122,12 @@ colnames(geometry) = c("x","y","z")
 # - Baseline
 ####################################################
 
+cat("Reading important features from all methods...\n")
+
 # Load important features 
 # - Lasso - 
 # 20, 40,60 genes
-files_cv_results_LASSO <- list.files(path = "Modified_LASSO_workflow/Results_UniquelyMapped_cells_inSituRNAseq/", 
+files_cv_results_LASSO <- list.files(path = "LASSO_topX_workflow/Results_UniquelyMapped_cells_inSituRNAseq/", 
                                      pattern = "CV", 
                                      full.names = TRUE)
 
@@ -155,6 +157,7 @@ load(file = "Results_Common/my_mapCells_run.RData")
 binarizedExpression <- as.data.frame(dm@binarized.data)
 
 # Run DistMap
+cat("Running DistMap...\n")
 registerDoMC(cores = 4)
 distMaps <- foreach(i = 1:nrow(featuresInfo)) %dopar% {
     
@@ -265,6 +268,9 @@ names(distMaps) <- paste(featuresInfo$Method, featuresInfo$numFeatures, "CV", fe
 # Top 10 locations predictions
 # For each distMap object generate the top 10 predictions by extracting the “mcc.scores” object from within the distMap object and identifying the bins corresponding to the top 10 highest mcc scores per cell.
 ############################################################
+
+cat("Predicting top 10 locations...\n")
+
 topX <- 10
 topXbins.All <- foreach(i = 1:length(distMaps), .combine = rbind) %dopar% {
     distMap_i <- distMaps[[i]]
@@ -303,6 +309,7 @@ for(fold_i in 1:nrow(folds_test)){
 }
 
 # Save predictions
+cat("Saving results...\n")
 save(topXbins.All, 
      file = "Results_Common/cell_Locations_top10_MCC_DistMapOnTest_10foldCV_UsingProvidedBinaryData.RData")
 

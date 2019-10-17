@@ -22,13 +22,12 @@ steps below to rerun our analysis.
 
 ###### R packages
 
-
     # Install required packages for Modified LASSO workflow 
     # Start R
     # Set working directory to SingleCell-DREAM_FOLDER
     setwd("PATH_TO_SingleCell-DREAM_FOLDER/")
     # Installing required dependencies
-    source("Modified_LASSO_workflow/R/Dependencies.R") 
+    source("LASSO_topX_workflow/R/Dependencies.R") 
 
 
 ### Setting things up
@@ -52,7 +51,7 @@ We employed three methods to perform the feature selection step, namely Random, 
 We randomly selected the desired number of genes to baseline our feature selection algorithms.
 
     # Randomly select genes
-    source(file = "Modified_LASSO_workflow/R/Baseline.R")
+    source(file = "Baseline/Baseline.R")
 
 
 #### Modified LASSO workflow
@@ -65,13 +64,13 @@ In order to generate the cell's 3d positions, which we used for labels, we run D
     source(file = "R_Common/ReproducePaperResults.R")
     
     # Identify Cell positions
-    source(file = "Modified_LASSO_workflow/R/ExtractRNAseqLocations.R")
+    source(file = "LASSO_topX_workflow/R/ExtractRNAseqLocations.R")
 
 
 ##### Feature selection step
 We modified LASSO workflow as described in our publication, TBA.
 Our code and respective documentation can be found in 
-`Modified_LASSO_workflow/R/glmnetExtensionLibrary.R`
+`LASSO_topX_workflow/R/glmnetExtensionLibrary.R`
 and is provided as an extension of glmnet package.
 
     # Reproduce our gene selection using the modified LASSO workflow using 
@@ -79,11 +78,11 @@ and is provided as an extension of glmnet package.
     # - To select only from the inSitu genes set: useOnlyInSitu <- TRUE. 
     # - To select across all genes set: useOnlyInSitu <- FALSE. 
     # Run feature selection process
-    source(file = "Modified_LASSO_workflow/R/LASSO_features_CVs_train.R")
+    source(file = "LASSO_topX_workflow/R/LASSO_features_CVs_train.R")
     
     # Plot error evolution and selected features of one of the provided Nested cross validation folds. 
     # Variable `fileCV` in the USER INPUT section of the script can be used to specify the results file that you want to use. 
-    source(file = "Modified_LASSO_workflow/R/Plot_Lasso_Features.R")
+    source(file = "LASSO_topX_workflow/R/Plot_Lasso_Features.R")
 
 
 #### Instructions for running Neural Network codes used for variable selection
@@ -104,7 +103,7 @@ Please visit the sub-directory named "NeuralNetworks/DuringChallenge_Subchalleng
 * Run: bash Step3_GenerateRankedLists.sh
 
 ### Location prediction
-After selecting the most informative genes, using Random, the modified version of LASSO and Deep Neural Nets, we predicted the 10 locations per cell using a modified version of DistMap, as described in our publication, add link TBA. The modified version of DistMap employs only the cells in the training set to calculate all DistMap parameters and predicts the cell locations in the both the training and test sets. 
+After selecting the most informative genes, using Random, the LASSO.topX and Deep Neural Nets, we predicted the 10 locations per cell using a modified version of DistMap, as described in our publication, add link TBA. The modified version of DistMap employs only the cells in the training set to calculate all DistMap parameters and predicts the cell locations in the both the training and test sets. 
 The modified version of DistMap can be found here
 `R_Common/distmap/R/myDistMap.R`
 

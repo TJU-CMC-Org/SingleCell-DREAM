@@ -6,13 +6,13 @@ rm(list = ls())
 # ***************
 
 # File with CV results to load
-fileCV <- "Modified_LASSO_workflow/Results_UniquelyMapped_cells_inSituRNAseq/FeaturesInformation_CV_1_Data_UniquellyMappedCells_LASSO_Reps20_Folds5.RData"
+fileCV <- "LASSO_topX_workflow/Results_UniquelyMapped_cells_inSituRNAseq/FeaturesInformation_CV_1_Data_UniquellyMappedCells_LASSO_Reps20_Folds5.RData"
 
 # Num of Features 
 numFeatures <- c(20, 40, 60)
 
 # Folder to save plots
-folder2save <- "Modified_LASSO_workflow/Results_UniquelyMapped_cells_inSituRNAseq/"
+folder2save <- "LASSO_topX_workflow/Results_UniquelyMapped_cells_inSituRNAseq/"
 
 # Folds
 nfolds <- 5

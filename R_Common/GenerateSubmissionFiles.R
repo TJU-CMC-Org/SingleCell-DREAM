@@ -63,7 +63,7 @@ topXbins.All <- topXbins.All[numFeatures %in% c(20, 40, 60)]
 # Important features, files information
 # - Lasso - 
 files_cv_results_LASSO <- 
-    list.files(path = "Modified_LASSO_workflow/Results_UniquelyMapped_cells_inSituRNAseq", 
+    list.files(path = "LASSO_topX_workflow/Results_UniquelyMapped_cells_inSituRNAseq", 
                pattern = "FeaturesInformation_CV", 
                full.names = TRUE)
 # - Neural Nets - 
@@ -109,33 +109,24 @@ for(tmpName_i in unique(topXbins.All2submit$tmpName)){
         
         rm(cv.lasso.mse)
     }else if(grepl(pattern = "NeuralNets", x = unique(topXbins.All_i$type))){
-
-	 	  subchallenge = "error";
-	     if (featuresInfo_i$numFeatures == 20) {
-		     subchallenge = "Subchallenge3";
-		  } else if (featuresInfo_i$numFeatures == 40) {
-		     subchallenge = "Subchallenge2";
-		  } else if (featuresInfo_i$numFeatures == 60) {
-		     subchallenge = "Subchallenge1";
-		  }
-
-#        # Read features using NeuralNets method
-#        importantGenes <- fread(files_cv_results_NeuralNets[
-#            grepl(pattern = paste0("Slice_",(featuresInfo_i$CV - 1), ".", subchallenge, ".FeatureSelection.InsituGenes.txt"), 
-#                  x = files_cv_results_NeuralNets)], 
-#            header = FALSE)$V1
-#        
-#        # Read features using NeuralNets method
-#        importantGenes <- fread(files_cv_results_NeuralNets[
-#            grepl(pattern = paste0(strsplit(x = tmpName_i, split = ".", fixed = TRUE)[[1]][3], 
-#                                   "_WithCut_",
-#                                   (as.numeric(strsplit(x = tmpName_i, split = ".", 
-#                                                        fixed = TRUE)[[1]][5]) - 1), 
-#                                   ".txt"), 
-#                  x = files_cv_results_NeuralNets)], 
-#            header = FALSE)$V1
         
-        
+        subchallenge = "error";
+        if (grepl(pattern = "20", x = tmpName_i)) {
+            subchallenge = "Subchallenge3";
+        } else if (grepl(pattern = "40", x = tmpName_i)) {
+            subchallenge = "Subchallenge2";
+        } else if (grepl(pattern = "60", x = tmpName_i)) {
+            subchallenge = "Subchallenge1";
+        }
+
+        # Read features using NeuralNets method
+        importantGenes <- fread(files_cv_results_NeuralNets[
+            grepl(pattern = paste0("Slice_", 
+                                   (as.numeric(unique(topXbins.All_i$CV)) - 1), ".", 
+                                   subchallenge, ".FeatureSelection.InsituGenes.txt"), 
+                  x = files_cv_results_NeuralNets)], 
+            header = FALSE)$V1
+
     }else if(grepl(pattern = "Random", x = unique(topXbins.All_i$type))){
         
         # Read file
@@ -149,13 +140,13 @@ for(tmpName_i in unique(topXbins.All2submit$tmpName)){
                                      as.is = TRUE)$V1
         
     }
-
+    
     # Write file
     write.submittion.file(mypredictions = topXbins.All_i, 
                           features = importantGenes,
                           inSituGenes = colnames(insitu), 
                           filename = paste0(path2save, tmpName_i, ".csv"))
-
+    
 }
 
 

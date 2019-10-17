@@ -42,8 +42,8 @@ cell_ids <- fread(input = "Data/CV_folds/cell_ids.csv")
 grid = 10^seq(from = 1.3, to = -1, length.out = 300)
 
 # Path to folder to save results
-path2saveResults <- "Modified_LASSO_workflow/Results_UniquelyMapped_cells_inSituRNAseq"
-# path2saveResults <- "Modified_LASSO_workflow/Results_UniquellyMapped_cells_allRNASeq"
+path2saveResults <- "LASSO_topX_workflow/Results_UniquelyMapped_cells_inSituRNAseq"
+# path2saveResults <- "LASSO_topX_workflow/Results_UniquellyMapped_cells_allRNASeq"
 
 # *****************
 # CALCULATIONS ####
