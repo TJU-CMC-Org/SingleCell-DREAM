@@ -22,7 +22,7 @@ steps below to rerun our analysis.
 
 ###### R packages
 
-    # Install required packages for Modified LASSO workflow 
+    # Install required packages for Lasso-TopX workflow 
     # Start R
     # Set working directory to SingleCell-DREAM_FOLDER
     setwd("PATH_TO_SingleCell-DREAM_FOLDER/")
@@ -54,7 +54,7 @@ We randomly selected the desired number of genes to baseline our feature selecti
     source(file = "Baseline/Baseline.R")
 
 
-#### Modified LASSO workflow
+#### LASSO-topX workflow
 
 ##### Generating the 3d positions of the Cells
 
@@ -68,16 +68,15 @@ In order to generate the cell's 3d positions, which we used for labels, we run D
 
 
 ##### Feature selection step
-We modified LASSO workflow as described in our publication, TBA.
+We implemented Lasso-TopX by modifying LASSO workflow as described in our publication, TBA.
 Our code and respective documentation can be found in 
 `LASSO_topX_workflow/R/glmnetExtensionLibrary.R`
 and is provided as an extension of glmnet package.
 
-    # Reproduce our gene selection using the modified LASSO workflow using 
-    # the nested cross validation folds.
+    # Reproduce our gene selection using LASSO-topX 
     # - To select only from the inSitu genes set: useOnlyInSitu <- TRUE. 
     # - To select across all genes set: useOnlyInSitu <- FALSE. 
-    # Run feature selection process
+    # Run feature selection process - Lasso-TopX
     source(file = "LASSO_topX_workflow/R/LASSO_features_CVs_train.R")
     
     # Plot error evolution and selected features of one of the provided Nested cross validation folds. 
@@ -103,7 +102,7 @@ Please visit the sub-directory named "NeuralNetworks/DuringChallenge_Subchalleng
 * Run: bash Step3_GenerateRankedLists.sh
 
 ### Location prediction
-After selecting the most informative genes, using Random, the LASSO.topX and Deep Neural Nets, we predicted the 10 locations per cell using a modified version of DistMap, as described in our publication, add link TBA. The modified version of DistMap employs only the cells in the training set to calculate all DistMap parameters and predicts the cell locations in the both the training and test sets. 
+After selecting the most informative genes, using Random, LASSO.topX and Deep Neural Nets, we predicted the 10 locations per cell using a modified version of DistMap, as described in our publication, add link TBA. The modified version of DistMap employs only the cells in the training set to calculate all DistMap parameters and predicts the cell locations in the both the training and test sets. 
 The modified version of DistMap can be found here
 `R_Common/distmap/R/myDistMap.R`
 
@@ -131,3 +130,14 @@ For details see publication - TBA
     source(file = "R_Common/GenerateSubmissionFiles.R")
     # Finally generate scores and figures for both approaches by running.
     source(file = "R_Common/Evaluate_Predictions_Organizers_Scores.R")
+    
+    
+### Questions - Feedback - Bugs
+Please use Issues github page for questions, suggestions and reporting bugs. 
+
+
+#### Thank you for using our software! 
+
+
+
+
