@@ -8,8 +8,9 @@ cat("\nCreating folders tree...\n")
 # Data folder #
 cat("- Data folders\n")
 dir.create(path = "Data")
+dir.create(path = "Data/Drosophila")
 # Nested CV folders
-dir.create(path = "Data/CV_folds")
+dir.create(path = "Data/Drosophila/CV_folds")
 
 # Results folders LASSO #
 cat("- LASSO.topX workflow Results folders...\n")
@@ -28,19 +29,19 @@ dir.create(path = "Results_Common/SubmissionFiles_CV_DistMapOnTestCells_UsingPro
 # Download files #
 cat("Download data files from: \nhttps://shiny.mdc-berlin.de/DVEX/\n")
 download.file("http://bimsbstatic.mdc-berlin.de/rajewsky/DVEX/dge_raw.txt.gz", 
-              destfile = "Data/dge_raw.txt.gz")
+              destfile = "Data/Drosophila/dge_raw.txt.gz")
 download.file("http://bimsbstatic.mdc-berlin.de/rajewsky/DVEX/dge_normalized.txt.gz",
-              destfile = "Data/dge_normalized.txt.gz")
+              destfile = "Data/Drosophila/dge_normalized.txt.gz")
 download.file("http://bimsbstatic.mdc-berlin.de/rajewsky/DVEX/binarized_bdtnp.csv.gz",
-              destfile = "Data/binarized_bdtnp.csv.gz")
+              destfile = "Data/Drosophila/binarized_bdtnp.csv.gz")
 download.file("http://bimsbstatic.mdc-berlin.de/rajewsky/DVEX/bdtnp.txt.gz",
-              destfile = "Data/bdtnp.txt.gz")
+              destfile = "Data/Drosophila/bdtnp.txt.gz")
 download.file("http://bimsbstatic.mdc-berlin.de/rajewsky/DVEX/geometry.txt.gz",
-              destfile = "Data/geometry.txt.gz")
+              destfile = "Data/Drosophila/geometry.txt.gz")
 
 # Unzip files #
 cat("Unzip data files\n")
-files2unzip <- list.files(path = "Data/", pattern = ".gz", full.names = TRUE)
+files2unzip <- list.files(path = "Data/Drosophila/", pattern = ".gz", full.names = TRUE)
 sapply(X = files2unzip, FUN = gunzip, remove = FALSE)
 
 cat("\nAll done!\n")
