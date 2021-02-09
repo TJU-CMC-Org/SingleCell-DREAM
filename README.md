@@ -40,7 +40,7 @@ steps below to rerun our analysis.
     
     # Create NestedCV folds
     # The created 10 folds are generated randomly and are used only for illustration purposes.
-    # The results in our paper are based on the 10 cross validation folds provided by the challenge's organiners and are available here.TBA
+    # The results in our paper are based on the 10 cross validation folds provided by the challenge's organiners and are available here, https://www.life-science-alliance.org/content/3/11/e202000867
     source("R_Common/Create_NestedCV_folds.R")
 
 
@@ -68,7 +68,7 @@ In order to generate the cell's 3d positions, which we used for labels, we run D
 
 
 ##### Feature selection step
-We implemented Lasso-TopX by modifying LASSO workflow as described in our publication, TBA.
+We implemented Lasso-TopX by modifying LASSO workflow as described in our publication, https://www.frontiersin.org/articles/10.3389/fgene.2020.612840/full.
 Our code and respective documentation can be found in 
 `LASSO_topX_workflow/R/glmnetExtensionLibrary.R`
 and is provided as an extension of glmnet package.
@@ -102,7 +102,7 @@ Please visit the sub-directory named "NeuralNetworks/DuringChallenge_Subchalleng
 * Run: bash Step3_GenerateRankedLists.sh
 
 ### Location prediction
-After selecting the most informative genes, using Random, LASSO.topX and Deep Neural Nets, we predicted the 10 locations per cell using a modified version of DistMap, as described in our publication, add link TBA. The modified version of DistMap employs only the cells in the training set to calculate all DistMap parameters and predicts the cell locations in the both the training and test sets. 
+After selecting the most informative genes, using Random, LASSO.topX and Deep Neural Nets, we predicted the 10 locations per cell using a modified version of DistMap, as described in our publication, https://www.frontiersin.org/articles/10.3389/fgene.2020.612840/full. The modified version of DistMap employs only the cells in the training set to calculate all DistMap parameters and predicts the cell locations in the both the training and test sets. 
 The modified version of DistMap can be found here
 `R_Common/distmap/R/myDistMap.R`
 
@@ -117,7 +117,7 @@ The modified version of DistMap can be found here
 ### Score predictions 
 We score our prediction using our in-house blind metric and the challenge's organizers score functions, which are available online at `https://github.com/dream-sctc`.
 
-For details see publication - TBA
+For details see publication - https://www.frontiersin.org/articles/10.3389/fgene.2020.612840/full
 
     # Score predictions - blind metric
     source(file = "R_Common/Evaluate_Predictions_Blind_Metric.R")
