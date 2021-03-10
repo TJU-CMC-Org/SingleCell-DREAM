@@ -11,7 +11,7 @@ General
 
 This is a technical report on the techniques and protocols used to
 perform the analysis on the Single Cell Transcriptomics challenge, see
-<https://www.synapse.org/#!Synapse:syn15665609/wiki/>. Please follow the
+<https://www.frontiersin.org/articles/10.3389/fgene.2020.612840/full>. Please follow the
 steps below to rerun our analysis.
 
 ### Software Dependencies
